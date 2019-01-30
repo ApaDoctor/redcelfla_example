@@ -1,0 +1,19 @@
+version: '2'
+services:
+  app:
+    build: .
+    ports:
+      - 5000:5000
+    command: app
+    depends_on:
+      - celery
+
+  redis:
+    image: redis
+
+  celery:
+    build: .
+    command: celery
+    depends_on:
+      - redis
+
